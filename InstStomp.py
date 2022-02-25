@@ -53,7 +53,7 @@ def make_input_file(file_name, contents):
 
 def do_run(position, user_input, qemu_binary, binary, use_stdin=True):
     async_group = []
-    for x in string.printable:
+    for x in '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_{}':
         input_test = mod_input(user_input, position, x)
         async_group.append(
                 run_qemu_command.delay(
@@ -71,7 +71,7 @@ def do_run(position, user_input, qemu_binary, binary, use_stdin=True):
 
 def solve_ins_count(file_name, input_length, input_rev, input_stdin):
 
-    starting_input = "A"*input_length
+    starting_input = "A"*input_length + "\n"
     run_dict = {}
     my_r = range(input_length)
     if input_rev:
